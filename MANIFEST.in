@@ -1,0 +1,3 @@
+include README.rst
+include django_short_url/migrations/*.py
+include django_short_url/templates/django_short_url/*.html
