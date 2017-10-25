@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import include, patterns, url
-
+from django.conf.urls import include, url
 from django_short_url import views as surl_views
 
 

@@ -3,9 +3,8 @@
 import shortuuid
 from CodeConvert import CodeConvert as cc
 from django.shortcuts import redirect, render
-from furl import furl
-
 from django_short_url.models import ShortURL
+from furl import furl
 
 
 def short_url_redirect(request, surl):

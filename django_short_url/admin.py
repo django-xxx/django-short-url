@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-
 from django_short_url.models import ShortURL
 
 
