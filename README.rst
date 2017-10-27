@@ -51,3 +51,6 @@ Settings.py
         ...
     )
 
+    # Redirect url when short url not exists
+    DJANGO_SHORT_URL_REDIRECT_URL = ''
+

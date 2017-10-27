@@ -37,4 +37,7 @@ INSTALLED_APPS = (
     'django_short_url',
     ...
 )
+
+# Redirect url when short url not exists
+DJANGO_SHORT_URL_REDIRECT_URL = ''
 ```
