@@ -20,7 +20,7 @@ setup(
 
     packages=['django_short_url'],
     py_modules=[],
-    install_requires=['CodeConvert', 'furl', 'shortuuid'],
+    install_requires=['CodeConvert', 'django-admin', 'django-models-ext', 'furl', 'shortuuid'],
     include_package_data=True,
 
     classifiers=[
