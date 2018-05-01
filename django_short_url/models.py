@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from models_ext import BaseModelMixin
+from django_models_ext import BaseModelMixin
 
 
 class ShortURL(BaseModelMixin):

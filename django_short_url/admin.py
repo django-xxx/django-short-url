@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from djadmin import DeleteOnlyModelAdmin
 from django.contrib import admin
+from django_admin import DeleteOnlyModelAdmin
 from django_short_url.models import ShortURL
 
 
