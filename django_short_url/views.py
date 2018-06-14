@@ -50,11 +50,11 @@ def get_surl(lurl, length=None):
     sobj, created = ShortURL.objects.get_or_create(lurl=lurl)
     if created:
         length = length or (getattr(settings, 'DJANGO_SHORT_URL_LENGTH') if hasattr(settings, 'DJANGO_SHORT_URL_LENGTH') else 0) or 22
-        flag = True
-        while flag:
-            surl = shortuuid.ShortUUID().random(length=length)
+        while True:
+            sobj.surl = shortuuid.ShortUUID().random(length=length)
             try:
-                sobj.surl = surl
+                sobj.save()
+                break
             except IntegrityError:  # IntegrityError: (1062, "Duplicate entry 'xxx' for key 'surl'")
-                flag = False
+                continue
     return sobj.fsurl
