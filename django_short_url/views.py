@@ -3,6 +3,7 @@
 import shortuuid
 from CodeConvert import CodeConvert as cc
 from django.conf import settings
+from django.db.utils import IntegrityError
 from django.shortcuts import redirect, render
 from django_short_url.models import ShortURL
 from furl import furl
@@ -45,7 +46,15 @@ def short_url_redirect(request, surl):
     return redirect(furl(lurl).add(furl(cc.Convert2Utf8(request.get_raw_uri())).query.params).url)
 
 
-def get_surl(lurl):
-    return ShortURL.objects.get_or_create(lurl=lurl, defaults={
-        'surl': shortuuid.uuid()
-    })[0].fsurl
+def get_surl(lurl, length=None):
+    sobj, created = ShortURL.objects.get_or_create(lurl=lurl)
+    if created:
+        length = length or (getattr(settings, 'DJANGO_SHORT_URL_LENGTH') if hasattr(settings, 'DJANGO_SHORT_URL_LENGTH') else 0) or 22
+        flag = True
+        while flag:
+            surl = shortuuid.ShortUUID().random(length=length)
+            try:
+                sobj.surl = surl
+            except IntegrityError:  # IntegrityError: (1062, "Duplicate entry 'xxx' for key 'surl'")
+                flag = False
+    return sobj.fsurl
