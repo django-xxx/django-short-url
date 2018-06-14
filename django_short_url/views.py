@@ -48,7 +48,7 @@ def short_url_redirect(request, surl):
 
 def get_surl(lurl, length=None):
     sobj, created = ShortURL.objects.get_or_create(lurl=lurl)
-    if created:
+    if sobj.surl:
         length = length or (getattr(settings, 'DJANGO_SHORT_URL_LENGTH') if hasattr(settings, 'DJANGO_SHORT_URL_LENGTH') else 0) or 22
         while True:
             sobj.surl = shortuuid.ShortUUID().random(length=length)
