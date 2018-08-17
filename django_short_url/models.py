@@ -27,8 +27,8 @@ class ShortURL(BaseModelMixin):
             return settings.DOMAIN
         return ''
 
-    def fsurl(self, regex='s'):
-        return u'{0}/{1}/{2}'.format(self.fdomain, regex, self.surl)
+    def fsurl(self, domain=None, regex='s'):
+        return u'{0}/{1}/{2}'.format(domain or self.fdomain, regex, self.surl)
 
     @property
     def data(self):

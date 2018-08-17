@@ -46,7 +46,7 @@ def short_url_redirect(request, surl):
     return redirect(furl(lurl).add(furl(cc.Convert2Utf8(request.get_raw_uri())).query.params).url)
 
 
-def get_surl(lurl, length=None, regex='s'):
+def get_surl(lurl, length=None, domain=None, regex='s'):
     sobj, created = ShortURL.objects.get_or_create(lurl=lurl)
     if not sobj.surl:
         length = length or (getattr(settings, 'DJANGO_SHORT_URL_LENGTH') if hasattr(settings, 'DJANGO_SHORT_URL_LENGTH') else 0) or 22
@@ -57,4 +57,4 @@ def get_surl(lurl, length=None, regex='s'):
                 break
             except IntegrityError:  # IntegrityError: (1062, "Duplicate entry 'xxx' for key 'surl'")
                 continue
-    return sobj.fsurl(regex=regex)
+    return sobj.fsurl(domain=domain, regex=regex)
