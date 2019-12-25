@@ -2,6 +2,7 @@
 
 import shortuuid
 from CodeConvert import CodeConvert as cc
+from TimeConvert import TimeConvert as tc
 from django.conf import settings
 from django.db.utils import IntegrityError
 from django.shortcuts import redirect, render
@@ -43,7 +44,12 @@ def short_url_redirect(request, surl):
 
         return redirect(redirect_url)
 
-    return redirect(furl(lurl).add(furl(cc.Convert2Utf8(request.get_raw_uri())).query.params).url)
+    flurl = furl(lurl)
+    if hasattr(settings, 'DJANGO_SHORT_URL_ADD_TIMESTAMP') and getattr(settings, 'DJANGO_SHORT_URL_ADD_TIMESTAMP'):
+        stamp_key = getattr(settings, 'DJANGO_SHORT_URL_TIMESTAMP_KEY') if hasattr(settings, 'DJANGO_SHORT_URL_TIMESTAMP_KEY') else 't'
+        flurl = flurl.remove([stamp_key]).add({stamp_key: tc.utc_timestamp()})
+
+    return redirect(flurl.add(furl(cc.Convert2Utf8(request.get_raw_uri())).query.params).url)
 
 
 def get_surl(lurl, length=None, domain=None, regex='s'):
