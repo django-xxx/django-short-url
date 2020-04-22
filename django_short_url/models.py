@@ -17,7 +17,7 @@ class ShortURL(BaseModelMixin):
         verbose_name_plural = _(u'shorturl')
 
     def __unicode__(self):
-        return unicode(self.pk)
+        return self.pk
 
     @property
     def fdomain(self):
