@@ -16,8 +16,10 @@ def xxx(request):
 
 ## Urls.py
 ```python
+from django.urls import include, re_path
+
 urlpatterns = [
-    url(r'^s/', include('django_short_url.urls', namespace='django_short_url')),
+    re_path(r'^s/', include('django_short_url.urls', namespace='django_short_url')),
 ]
 ```
 or
