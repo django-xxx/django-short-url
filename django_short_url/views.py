@@ -50,7 +50,9 @@ def short_url_redirect(request, surl):
         stamp_key = getattr(settings, 'DJANGO_SHORT_URL_TIMESTAMP_KEY') if hasattr(settings, 'DJANGO_SHORT_URL_TIMESTAMP_KEY') else 't'
         flurl = flurl.remove([stamp_key]).add({stamp_key: tc.utc_timestamp()})
 
-    return redirect(flurl.add(furl(cc.Convert2Utf8(request.get_raw_uri())).query.params).url)
+    # https://code.djangoproject.com/ticket/32698
+    # https://github.com/django/django/commit/8bcb00858e0ddec79cc96669c238d29c30d7effb
+    return redirect(flurl.add(furl(cc.Convert2Utf8(request.build_absolute_uri())).query.params).url)
 
 
 def get_surl(lurl, length=None, domain=None, regex='s'):
