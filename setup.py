@@ -10,7 +10,7 @@ setup(
     name='django-short-url',
     version=version,
     keywords='django-short-url',
-    description='Django WeChat Short URL',
+    description='Django Short URL',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
 

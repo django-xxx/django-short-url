@@ -1,5 +1,5 @@
 # django-short-url
-Django WeChat Short URL
+Django Short URL
 
 ## Installation
 ```shell
