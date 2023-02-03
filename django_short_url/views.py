@@ -2,12 +2,13 @@
 
 import shortuuid
 from CodeConvert import CodeConvert as cc
-from TimeConvert import TimeConvert as tc
 from django.conf import settings
 from django.db.utils import IntegrityError
 from django.shortcuts import redirect, render
-from django_short_url.models import ShortURL
 from furl import furl
+from TimeConvert import TimeConvert as tc
+
+from django_short_url.models import ShortURL
 
 
 def short_url_redirect(request, surl):

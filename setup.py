@@ -11,7 +11,8 @@ setup(
     version=version,
     keywords='django-short-url',
     description='Django WeChat Short URL',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
 
     url='https://github.com/django-xxx/django-short-url',
 
@@ -20,7 +21,7 @@ setup(
 
     packages=['django_short_url'],
     py_modules=[],
-    install_requires=['CodeConvert', 'TimeConvert', 'django-admin>=1.2.4', 'django-models-ext>=1.1.10', 'furl', 'shortuuid'],
+    install_requires=['CodeConvert', 'TimeConvert', 'django-admin>=1.2.4', 'django-models-ext>=1.1.10', 'django-six', 'furl', 'shortuuid'],
     include_package_data=True,
 
     classifiers=[
