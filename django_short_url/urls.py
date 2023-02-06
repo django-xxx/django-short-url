@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from django_six import re_path
 
 from django_short_url import views as surl_views
